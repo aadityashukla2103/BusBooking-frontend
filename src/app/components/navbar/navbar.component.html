@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-danger px-4 py-2 shadow-sm">
+
+  <!-- Logo -->
+  <a class="navbar-brand fw-bold fs-4 d-flex align-items-center gap-2" routerLink="/">
+    🚌 BusBook
+  </a>
+
+  <!-- Toggle -->
+  <button 
+    class="navbar-toggler border-0" 
+    type="button" 
+    data-bs-toggle="collapse" 
+    data-bs-target="#navbarNav"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Content -->
+  <div class="collapse navbar-collapse" id="navbarNav">
+
+    <!-- Center Links -->
+    <ul class="navbar-nav mx-auto gap-lg-3 text-center">
+      <li class="nav-item">
+        <a class="nav-link fw-semibold px-3 active" routerLink="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link fw-semibold px-3" routerLink="/search">Search</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link fw-semibold px-3" routerLink="/bookings">Bookings</a>
+      </li>
+    </ul>
+
+    <!-- Right Side -->
+    <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0">
+
+      <!-- Help -->
+      <span class="text-white small me-2 d-none d-lg-block">Help</span>
+
+      <!-- Login -->
+      <button class="btn btn-outline-light rounded-pill px-3" routerLink="/login">
+        Login
+      </button>
+
+      <!-- Signup -->
+      <button class="btn btn-light text-danger fw-semibold rounded-pill px-3" routerLink="/signup">
+        Sign Up
+      </button>
+
+    </div>
+
+  </div>
+
+</nav>
