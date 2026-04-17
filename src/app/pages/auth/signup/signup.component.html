@@ -6,32 +6,33 @@
     <h3 class="text-center fw-bold text-danger mb-3">Create Account</h3>
 
     <!-- Form -->
-    <form>
+    <form (ngSubmit)="onSubmit()">
 
-      <!-- Name -->
-      <div class="mb-3">
-        <label class="form-label">Full Name</label>
-        <input type="text" class="form-control" placeholder="Enter your name">
-      </div>
+  <div class="mb-3">
+    <label class="form-label">Full Name</label>
+    <input type="text" name="name" [(ngModel)]="formData.name" class="form-control" required>
+  </div>
 
-      <!-- Phone -->
-      <div class="mb-3">
-        <label class="form-label">Phone Number</label>
-        <input type="tel" class="form-control" placeholder="Enter phone number">
-      </div>
+  <div class="mb-3">
+    <label class="form-label">Username</label>
+    <input type="text" name="username" [(ngModel)]="formData.username" class="form-control" required>
+  </div>
 
-      <!-- Password -->
-      <div class="mb-3">
-        <label class="form-label">Password</label>
-        <input type="password" class="form-control" placeholder="Enter password">
-      </div>
+  <div class="mb-3">
+    <label class="form-label">Phone Number</label>
+    <input type="tel" name="phone" [(ngModel)]="formData.phone" class="form-control" required>
+  </div>
 
-      <!-- Button -->
-      <div class="d-grid mt-3">
-        <button class="btn btn-danger fw-semibold">Sign Up</button>
-      </div>
+  <div class="mb-3">
+    <label class="form-label">Password</label>
+    <input type="password" name="password" [(ngModel)]="formData.password" class="form-control" required>
+  </div>
 
-    </form>
+  <div class="d-grid mt-3">
+    <button class="btn btn-danger fw-semibold">Sign Up</button>
+  </div>
+
+</form>
 
     <!-- Login Redirect -->
     <p class="text-center mt-3 mb-0 small">
