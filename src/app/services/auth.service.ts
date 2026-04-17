@@ -7,11 +7,24 @@ import { Signup } from '../models/signup';
 })
 export class AuthService {
 
-  private baseUrl = 'http://localhost:8087/auth/signup'; // backend URL
+  private baseUrl = 'http://localhost:8087';
 
   constructor(private http: HttpClient) {}
 
+  // ✅ Signup
   register(data: Signup) {
-    return this.http.post(`${this.baseUrl}`, data, { responseType: 'text' });
+    return this.http.post(`${this.baseUrl}/auth/signup`, data, { responseType: 'text' });
   }
+
+  // ✅ Login
+  login(data: any) {
+    return this.http.post(
+      `${this.baseUrl}/generateToken`,
+      data,
+      { responseType: 'text' }
+    );
+  }
+  isLoggedIn(): boolean {
+  return !!localStorage.getItem('token');
+}
 }

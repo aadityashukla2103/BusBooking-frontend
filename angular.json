@@ -25,14 +25,12 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
-            ],
-            "scripts": [],
-            "server": "src/main.server.ts",
-            "prerender": true,
-            "ssr": {
-              "entry": "server.ts"
-            }
+  "node_modules/bootstrap/dist/css/bootstrap.min.css",
+  "node_modules/ngx-toastr/toastr.css",
+  "src/styles.css"
+],
+            "scripts": []
+           
           },
           "configurations": {
             "production": {

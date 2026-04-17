@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-danger px-4 py-2 shadow-sm">
 
-  <!-- Logo -->
+  <!-- Logo (LEFT) -->
   <a class="navbar-brand fw-bold fs-4 d-flex align-items-center gap-2" routerLink="/">
     🚌 BusBook
   </a>
@@ -18,34 +18,58 @@
   <!-- Content -->
   <div class="collapse navbar-collapse" id="navbarNav">
 
-    <!-- Center Links -->
+    <!-- CENTER LINKS -->
     <ul class="navbar-nav mx-auto gap-lg-3 text-center">
+
       <li class="nav-item">
         <a class="nav-link fw-semibold px-3 active" routerLink="/">Home</a>
       </li>
+
       <li class="nav-item">
         <a class="nav-link fw-semibold px-3" routerLink="/search">Search</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link fw-semibold px-3" routerLink="/bookings">Bookings</a>
+
+      <!-- ✅ Only after login -->
+      <li class="nav-item" *ngIf="authService.isLoggedIn()">
+        <a class="nav-link fw-semibold px-3" routerLink="/bookings">MyBookings</a>
       </li>
+      <li class="nav-item" >
+        <a class="nav-link fw-semibold px-3" routerLink="">Helps</a>
+      </li>
+
     </ul>
 
-    <!-- Right Side -->
+    <!-- RIGHT SIDE -->
     <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0">
 
       <!-- Help -->
-      <span class="text-white small me-2 d-none d-lg-block">Help</span>
+      
 
-      <!-- Login -->
-      <button class="btn btn-outline-light rounded-pill px-3" routerLink="/login">
-        Login
-      </button>
+      <!-- ❌ NOT LOGGED IN -->
+      <ng-container *ngIf="!authService.isLoggedIn()">
 
-      <!-- Signup -->
-      <button class="btn btn-light text-danger fw-semibold rounded-pill px-3" routerLink="/signup">
-        Sign Up
-      </button>
+        <button class="btn btn-outline-light rounded-pill px-3" routerLink="/login">
+          Login
+        </button>
+
+        <button class="btn btn-light text-danger fw-semibold rounded-pill px-3" routerLink="/signup">
+          Sign Up
+        </button>
+
+      </ng-container>
+
+      <!-- ✅ LOGGED IN -->
+      <ng-container *ngIf="authService.isLoggedIn()">
+
+        <button class="btn btn-light text-danger fw-semibold rounded-pill px-3" routerLink="/profile">
+          My Profile
+        </button>
+
+        <button class="btn btn-outline-light rounded-pill px-3" (click)="logout()">
+          Logout
+        </button>
+
+      </ng-container>
 
     </div>
 

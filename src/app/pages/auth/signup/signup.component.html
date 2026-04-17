@@ -6,33 +6,60 @@
     <h3 class="text-center fw-bold text-danger mb-3">Create Account</h3>
 
     <!-- Form -->
-    <form (ngSubmit)="onSubmit()">
+    <form #signupForm="ngForm" (ngSubmit)="onSubmit()">
 
-  <div class="mb-3">
-    <label class="form-label">Full Name</label>
-    <input type="text" name="name" [(ngModel)]="formData.name" class="form-control" required>
-  </div>
+      <!-- Full Name -->
+      <div class="mb-3">
+        <label class="form-label">Full Name</label>
+        <input type="text" name="name" [(ngModel)]="formData.name"
+               class="form-control" required #name="ngModel">
 
-  <div class="mb-3">
-    <label class="form-label">Username</label>
-    <input type="text" name="username" [(ngModel)]="formData.username" class="form-control" required>
-  </div>
+        <small class="text-danger" *ngIf="name.invalid && name.touched">
+          Name is required
+        </small>
+      </div>
 
-  <div class="mb-3">
-    <label class="form-label">Phone Number</label>
-    <input type="tel" name="phone" [(ngModel)]="formData.phone" class="form-control" required>
-  </div>
+      <!-- Username -->
+      <div class="mb-3">
+        <label class="form-label">Username</label>
+        <input type="text" name="username" [(ngModel)]="formData.username"
+               class="form-control" required #username="ngModel">
 
-  <div class="mb-3">
-    <label class="form-label">Password</label>
-    <input type="password" name="password" [(ngModel)]="formData.password" class="form-control" required>
-  </div>
+        <small class="text-danger" *ngIf="username.invalid && username.touched">
+          Username is required
+        </small>
+      </div>
 
-  <div class="d-grid mt-3">
-    <button class="btn btn-danger fw-semibold">Sign Up</button>
-  </div>
+      <!-- Phone -->
+      <div class="mb-3">
+        <label class="form-label">Phone Number</label>
+        <input type="tel" name="phone" [(ngModel)]="formData.phone"
+               class="form-control" required #phone="ngModel">
 
-</form>
+        <small class="text-danger" *ngIf="phone.invalid && phone.touched">
+          Phone number is required
+        </small>
+      </div>
+
+      <!-- Password -->
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" name="password" [(ngModel)]="formData.password"
+               class="form-control" required #password="ngModel">
+
+        <small class="text-danger" *ngIf="password.invalid && password.touched">
+          Password is required
+        </small>
+      </div>
+
+      <!-- Button -->
+      <div class="d-grid mt-3">
+        <button class="btn btn-danger fw-semibold" [disabled]="!signupForm.valid">
+          Sign Up
+        </button>
+      </div>
+
+    </form>
 
     <!-- Login Redirect -->
     <p class="text-center mt-3 mb-0 small">

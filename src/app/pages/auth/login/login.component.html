@@ -6,18 +6,22 @@
     <h3 class="text-center fw-bold text-danger mb-3">Login</h3>
 
     <!-- Form -->
-    <form>
+    <form #loginForm="ngForm" (ngSubmit)="onLogin()">
 
-      <!-- Phone -->
+      <!-- Username -->
       <div class="mb-3">
-        <label class="form-label">Phone Number</label>
-        <input type="tel" class="form-control" placeholder="Enter phone number">
+        <label class="form-label">Username</label>
+        <input type="text" name="username" [(ngModel)]="loginData.username"
+               class="form-control" placeholder="Enter username"
+               required #username="ngModel">
       </div>
 
       <!-- Password -->
       <div class="mb-2">
         <label class="form-label">Password</label>
-        <input type="password" class="form-control" placeholder="Enter password">
+        <input type="password" name="password" [(ngModel)]="loginData.password"
+               class="form-control" placeholder="Enter password"
+               required #password="ngModel">
       </div>
 
       <!-- Forgot -->
@@ -29,7 +33,9 @@
 
       <!-- Button -->
       <div class="d-grid">
-        <button class="btn btn-danger fw-semibold">Login</button>
+        <button class="btn btn-danger fw-semibold" [disabled]="!loginForm.valid">
+          Login
+        </button>
       </div>
 
     </form>

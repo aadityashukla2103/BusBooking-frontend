@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';   // ✅ ADD
+import { Router, RouterLink } from '@angular/router';     // ✅ ADD
 import { AuthService } from '../../../services/auth.service';
 import { FormsModule } from '@angular/forms';
-
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-signup',
-  imports: [FormsModule],
+  imports: [RouterLink, FormsModule,CommonModule],  // ✅ ADD
   standalone: true,
   templateUrl: './signup.component.html'
 })
@@ -18,16 +20,31 @@ export class SignupComponent {
     phone: ''
   };
 
-  constructor(private authService: AuthService) {}
+  // ✅ CONSTRUCTOR → ADD HERE
+  constructor(
+    private authService:AuthService,
+    private toastr: ToastrService,
+    private router: Router
+  ) {}
 
   onSubmit() {
+    if (!this.formData.username || !this.formData.password ||
+        !this.formData.name || !this.formData.phone) {
+      this.toastr.warning('Please fill all fields ⚠️');
+      return;
+    }
+
     this.authService.register(this.formData).subscribe({
       next: (res) => {
-        alert(res); // "User Registered Successfully"
+        if (res === 'Username already exists') {
+          this.toastr.error('Username already taken ❌');
+        } else {
+          this.toastr.success('Account created successfully 🎉');
+          this.router.navigate(['/login']);
+        }
       },
-      error: (err) => {
-        console.log(err);
-        alert('Error occurred');
+      error: () => {
+        this.toastr.error('Something went wrong ❌');
       }
     });
   }

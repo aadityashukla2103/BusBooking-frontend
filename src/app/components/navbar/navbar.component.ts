@@ -1,16 +1,21 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { LoginComponent } from '../../pages/auth/login/login.component';
-import { SignupComponent } from '../../pages/auth/signup/signup.component';
-
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink,LoginComponent,SignupComponent],
-  templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  imports: [CommonModule, RouterLink],
+  templateUrl: './navbar.component.html'
 })
 export class NavbarComponent {
 
+  constructor(public authService: AuthService, private router: Router) {}
+
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
+  }
 }
