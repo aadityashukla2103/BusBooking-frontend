@@ -1,0 +1,88 @@
+<div class="container mt-5">
+
+  <h3 class="text-center mb-4 fw-bold">🚌 Available Buses</h3>
+
+  <!-- No Data -->
+  <div *ngIf="schedules.length === 0" class="text-center">
+    <p class="text-muted fs-5">No buses available 😔</p>
+  </div>
+
+  <!-- Bus Cards Grid -->
+  <div class="row g-4 justify-content-center">
+
+    <div *ngFor="let s of schedules" 
+         class="col-lg-4 col-md-6 col-12">
+
+      <div class="bus-card p-4 h-100 d-flex flex-column justify-content-between">
+
+        <!-- TOP -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="fw-bold mb-0">
+            {{s.bus?.busNumber}}
+          </h5>
+
+          <span class="badge bg-danger-subtle text-danger px-3 py-2">
+            {{s.bus?.busType}}
+          </span>
+        </div>
+
+        <!-- CENTER -->
+        <div class="text-center mb-3">
+
+          <h3 class="fw-bold mb-1">
+            {{s.departureTime}}
+          </h3>
+
+          <p class="text-muted small mb-2">
+            {{s.route?.source}} → {{s.route?.destination}}
+          </p>
+
+          <!-- DATE -->
+          <span class="date-pill">
+            📅 {{s.scheduleDate | date:'mediumDate'}}
+          </span>
+
+        </div>
+
+        <!-- BOTTOM -->
+        <div class="d-flex justify-content-between align-items-center mt-3">
+
+         <p class="mb-0 fw-semibold"
+   [ngClass]="{
+     'text-danger': s.availableSeats < 5,
+     'text-warning': s.availableSeats >= 5 && s.availableSeats < 20,
+     'text-success': s.availableSeats >= 20
+   }">
+
+  Total: {{s.availableSeats}} / {{s.totalSeats}} seats left
+
+</p>
+<!-- optional ui upgrade for later  -->
+<!-- 
+
+<div class="progress mt-2" style="height: 6px;">
+  <div class="progress-bar"
+       [style.width.%]="(s.availableSeats / s.totalSeats) * 100"
+       [ngClass]="{
+         'bg-danger': s.availableSeats < 5,
+         'bg-warning': s.availableSeats >= 5 && s.availableSeats < 20,
+         'bg-success': s.availableSeats >= 20
+       }">
+  </div>
+</div> -->
+
+          <button class="btn btn-danger px-4"
+                  [disabled]="s.availableSeats === 0"
+                  (click)="bookNow(s)">
+            {{s.availableSeats === 0 ? 'Sold Out' : 'Book Now'}}
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

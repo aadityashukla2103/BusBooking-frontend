@@ -1,0 +1,93 @@
+/* GLOBAL */
+body {
+  background: #f5f7fa;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* HERO */
+.hero-section {
+  height: 90vh;
+  background-image: url('/assets/bus.png');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+  padding-bottom: 100px;
+}
+
+.search-overlay {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 82%;
+  max-width: 1100px;
+  z-index: 10;
+}
+
+.search-card {
+  background: #fff;
+  padding: 24px 28px;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+
+/* OFFER */
+.offer-banner {
+  background: linear-gradient(135deg, #ff4d4f, #ff7875);
+  color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(255, 77, 79, 0.3);
+}
+
+/* FEATURES */
+.feature-card {
+  background: #fff;
+  border-radius: 15px;
+  padding: 24px 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+.icon {
+  width: 60px;
+  height: 60px;
+  background: #ffeaea;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+  font-size: 24px;
+}

@@ -1,0 +1,34 @@
+<div class="container mt-5">
+
+  <h3 class="text-center mb-4">🛣️ Available Routes</h3>
+
+  <!-- No Routes -->
+  <div *ngIf="routes.length === 0" class="text-center">
+    <p>No routes available 😔</p>
+  </div>
+
+  <!-- Route Cards -->
+  <div *ngFor="let r of routes" class="card shadow mb-3 p-3 rounded-4">
+
+    <div class="d-flex justify-content-between align-items-center">
+
+      <!-- LEFT -->
+      <div>
+        <h5 class="fw-bold mb-1">
+          {{r.source}} → {{r.destination}}
+        </h5>
+      </div>
+
+      <!-- RIGHT -->
+      <div>
+        <button class="btn btn-danger px-4"
+                (click)="viewBuses(r)">
+          View Buses
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

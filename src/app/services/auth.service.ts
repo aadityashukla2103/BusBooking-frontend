@@ -27,4 +27,13 @@ export class AuthService {
   isLoggedIn(): boolean {
   return !!localStorage.getItem('token');
 }
+getProfile() {
+  const token = localStorage.getItem('token');
+
+  return this.http.get<any>('http://localhost:8087/profile', {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+}
 }
