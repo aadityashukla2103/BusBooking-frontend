@@ -1,0 +1,150 @@
+<!-- seat-selection.component.html -->
+
+<div class="container mt-5">
+
+  <!-- Header -->
+  <div class="text-center mb-4">
+
+    <h2 class="fw-bold">💺 Select Your Seat</h2>
+
+    <p class="text-muted">
+      Bus No:
+      {{ selectedBus.bus?.busNumber || selectedBus.busNumber }} |
+      {{ source }} → {{ destination }} |
+      {{ travelDate }}
+    </p>
+
+  </div>
+
+  <!-- Bus Details -->
+  <div class="card shadow-sm rounded-4 p-4 mb-4">
+
+    <div class="row text-center">
+
+      <div class="col-md-3">
+        <h5 class="fw-bold">
+          {{ selectedBus.bus?.busType || selectedBus.busType }}
+        </h5>
+        <small class="text-muted">Bus Type</small>
+      </div>
+
+      <div class="col-md-3">
+        <h5 class="fw-bold">
+          {{ selectedBus.departureTime || '09:30' }}
+        </h5>
+        <small class="text-muted">Departure</small>
+      </div>
+
+      <div class="col-md-3">
+        <h5 class="fw-bold">
+          --:--
+        </h5>
+        <small class="text-muted">Arrival</small>
+      </div>
+
+      <div class="col-md-3">
+        <h5 class="text-danger fw-bold">
+          ₹500
+        </h5>
+        <small class="text-muted">Per Seat</small>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Legend -->
+  <div class="d-flex justify-content-center gap-4 mb-4">
+
+    <span class="badge bg-light text-dark border px-3 py-2">
+      Available
+    </span>
+
+    <span class="badge bg-secondary px-3 py-2">
+      Booked
+    </span>
+
+    <span class="badge bg-success px-3 py-2">
+      Selected
+    </span>
+
+  </div>
+
+  <!-- Seat Layout -->
+  <div class="card shadow rounded-4 p-4">
+
+    <div class="row justify-content-center">
+
+      <div class="col-md-8">
+
+        <div class="row g-2">
+
+          <div class="col-3"
+               *ngFor="let seat of seats">
+
+            <button
+              class="btn w-100 py-2 fw-semibold"
+
+              [ngClass]="{
+                'btn-outline-dark': !seat.booked && !seat.selected,
+                'btn-secondary': seat.booked,
+                'btn-success': seat.selected
+              }"
+
+              [disabled]="seat.booked"
+
+              (click)="toggleSeat(seat)">
+
+              {{ seat.number }}
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="card shadow-sm mt-4 rounded-4 p-4">
+
+    <div class="row align-items-center">
+
+      <div class="col-md-6">
+
+        <h5 class="mb-1">
+          Selected Seats:
+          <span class="text-success">
+            {{ selectedSeatNumbers.join(', ') || 'None' }}
+          </span>
+        </h5>
+
+        <p class="mb-0 text-muted">
+          Total Fare:
+          ₹{{ selectedSeatNumbers.length * 500 }}
+        </p>
+
+      </div>
+
+      <div class="col-md-6 text-end">
+
+        <button
+          class="btn btn-danger px-5"
+          [disabled]="selectedSeatNumbers.length === 0"
+          (click)="continueBooking()">
+
+          Continue
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

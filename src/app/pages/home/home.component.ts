@@ -18,14 +18,12 @@ export class HomeComponent {
 
   constructor(private router: Router) {}
 
-  // 🔁 Swap cities
   swapCities() {
     const temp = this.from;
     this.from = this.to;
     this.to = temp;
   }
 
-  // 🔍 Search (FINAL)
   search() {
     console.log("FROM:", this.from);
     console.log("TO:", this.to);
@@ -36,7 +34,7 @@ export class HomeComponent {
       return;
     }
 
-    this.router.navigate(['/buses'], {
+    this.router.navigate(['/bus-list'], {
       queryParams: {
         source: this.from,
         destination: this.to,

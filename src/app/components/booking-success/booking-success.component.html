@@ -1,0 +1,60 @@
+<!-- booking-success.component.html -->
+
+<div class="container mt-5">
+
+  <div class="card shadow border-0 rounded-4 p-5 text-center">
+
+    <div class="mb-4">
+      <h1 class="display-4 text-success">✅</h1>
+      <h2 class="fw-bold">Booking Confirmed</h2>
+      <p class="text-muted">
+        Your bus ticket has been booked successfully.
+      </p>
+    </div>
+
+    <hr>
+
+    <div class="row mt-4 g-4">
+
+      <div class="col-md-4">
+        <h5 class="fw-bold">{{ booking.bookingId }}</h5>
+        <small class="text-muted">Booking ID</small>
+      </div>
+
+      <div class="col-md-4">
+        <h5 class="fw-bold">{{ booking.seatNumbers?.join(', ') }}</h5>
+        <small class="text-muted">Seats</small>
+      </div>
+
+      <div class="col-md-4">
+        <h5 class="text-danger fw-bold">
+          ₹{{ booking.totalAmount }}
+        </h5>
+        <small class="text-muted">Amount Paid</small>
+      </div>
+
+    </div>
+
+    <div class="mt-5 d-flex justify-content-center gap-3">
+
+      <button
+        class="btn btn-danger px-4"
+        (click)="goToBookings()">
+
+        My Bookings
+
+      </button>
+
+      <button
+        class="btn btn-outline-dark px-4"
+        (click)="goHome()">
+
+        Home
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

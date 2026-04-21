@@ -39,11 +39,10 @@ export class RoutesComponent implements OnInit {
     });
   }
 
-  // 🚀 Navigate to buses
   viewBuses(route: any) {
     const today = new Date().toISOString().split('T')[0];
 
-    this.router.navigate(['/buses'], {
+    this.router.navigate(['/bus-list'], {
       queryParams: {
         source: route.source,
         destination: route.destination,

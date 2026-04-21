@@ -15,7 +15,6 @@ export class BusesComponent implements OnInit {
 
   schedules: any[] = [];
 
-  // ✅ inject router here
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
@@ -42,9 +41,9 @@ export class BusesComponent implements OnInit {
   bookNow(schedule: any) {
     console.log("Selected Schedule:", schedule);
 
-    this.router.navigate(['/booking'], {
-      queryParams: {
-        scheduleId: schedule.id
+    this.router.navigate(['/seat-selection'], {
+      state: {
+        schedule: schedule
       }
     });
   }

@@ -1,0 +1,143 @@
+<div class="container py-5">
+
+  <!-- Heading -->
+  <div class="text-center mb-5">
+
+    <h1 class="fw-bold display-5 text-dark">
+      🚌 Available Buses
+    </h1>
+
+    <p class="text-muted fs-5 mb-0">
+      Choose your best bus and continue booking
+    </p>
+
+  </div>
+
+  <!-- Cards -->
+  <div class="row g-4">
+
+    <div
+      class="col-lg-4 col-md-6"
+      *ngFor="let bus of buses">
+
+      <div class="card border-0 shadow rounded-4 h-100 p-4">
+
+        <!-- Top -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+          <h4 class="fw-bold mb-0 text-secondary">
+            Bus No.
+            <span class="text-danger">
+              {{ bus.bus.busNumber }}
+            </span>
+          </h4>
+
+          <span class="badge bg-danger-subtle text-danger px-3 py-2 rounded-pill text-uppercase">
+            {{ bus.bus.busType }}
+          </span>
+
+        </div>
+
+        <!-- Date -->
+        <div class="d-flex align-items-center gap-3 mb-4">
+
+          <span class="fs-2">📅</span>
+
+          <div>
+            <small class="text-muted d-block">
+              Date
+            </small>
+
+            <h5 class="fw-bold mb-0">
+              {{ bus.scheduleDate | date:'dd MMM yyyy' }}
+            </h5>
+          </div>
+
+        </div>
+
+        <!-- Departure -->
+        <div class="d-flex align-items-center gap-3 mb-4">
+
+          <span class="fs-2">🕒</span>
+
+          <div>
+            <small class="text-muted d-block">
+              Departure
+            </small>
+
+            <h5 class="fw-bold mb-0">
+              {{ bus.departureTime }}
+            </h5>
+          </div>
+
+        </div>
+
+        <!-- Route -->
+        <div class="d-flex align-items-center gap-3 mb-4">
+
+          <span class="fs-2">📍</span>
+
+          <div>
+            <small class="text-muted d-block">
+              Route
+            </small>
+
+            <h5 class="fw-bold mb-0">
+              {{ bus.route.source }}
+              →
+              {{ bus.route.destination }}
+            </h5>
+          </div>
+
+        </div>
+
+        <hr>
+
+        <!-- Seats -->
+        <div class="bg-success-subtle rounded-4 px-3 py-3 mb-4 text-center">
+
+          <span class="fw-bold text-success fs-4">
+            {{ bus.availableSeats }}
+          </span>
+
+          <span class="text-dark">
+            seats left out of
+          </span>
+
+          <span class="fw-bold">
+            {{ bus.totalSeats }}
+          </span>
+
+        </div>
+
+        <!-- Button -->
+        <div class="text-center mt-auto">
+
+          <button
+            class="btn btn-outline-danger px-4 py-2 rounded-pill fw-bold"
+            (click)="bookNow(bus)">
+
+            Book Now →
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Empty -->
+  <div
+    *ngIf="buses.length === 0"
+    class="text-center mt-5">
+
+    <h4 class="text-muted">
+      No buses available
+    </h4>
+
+  </div>
+
+</div>

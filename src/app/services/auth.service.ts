@@ -11,12 +11,10 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  // ✅ Signup
   register(data: Signup) {
     return this.http.post(`${this.baseUrl}/auth/signup`, data, { responseType: 'text' });
   }
 
-  // ✅ Login
   login(data: any) {
     return this.http.post(
       `${this.baseUrl}/generateToken`,

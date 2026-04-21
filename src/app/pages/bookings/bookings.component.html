@@ -1,37 +1,122 @@
-<div class="container mt-4">
-  <h2 class="text-center text-danger mb-4">My Bookings</h2>
+<!-- bookings.component.html -->
 
-  <div *ngIf="bookings.length === 0" class="text-center">
-    No bookings found
+<div class="container mt-5">
+
+  <!-- Heading -->
+  <h2 class="text-center fw-bold text-danger mb-5">
+    🎫 My Bookings
+  </h2>
+
+  <!-- Loading -->
+  <div *ngIf="loading" class="text-center mt-5">
+    <h5>Loading bookings...</h5>
   </div>
 
-  <div class="row">
-    <div class="col-md-6 mb-3" *ngFor="let b of bookings">
+  <!-- No Data -->
+  <div *ngIf="!loading && bookings.length === 0" class="text-center mt-5">
+    <h5>No bookings found</h5>
+  </div>
 
-      <div class="card shadow-sm p-3">
+  <!-- Booking Cards -->
+  <div class="row g-4" *ngIf="!loading && bookings.length > 0">
 
-        <h5 class="text-danger">{{ b.busName }}</h5>
+    <div
+      class="col-md-6"
+      *ngFor="let b of bookings">
 
-        <p><strong>Route:</strong> {{ b.from }} → {{ b.to }}</p>
-        <p><strong>Date:</strong> {{ b.journeyDate }}</p>
-        <p><strong>Seats:</strong> {{ b.seats }}</p>
+      <div class="card shadow border-0 rounded-4 p-4 h-100">
 
-        <p>
-          <strong>Status:</strong>
-          <span 
-            class="badge"
+        <!-- Top -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+
+          <h4 class="fw-bold text-danger m-0">
+            🚌 {{ b.schedule?.bus?.busNumber }}
+          </h4>
+
+          <span
+            class="badge px-3 py-2"
             [ngClass]="{
-              'bg-success': b.status === 'CONFIRMED',
-              'bg-warning': b.status === 'PENDING',
-              'bg-danger': b.status === 'CANCELLED'
-            }"
-          >
-            {{ b.status }}
+              'bg-success': b.bookingStatus === 'CONFIRMED',
+              'bg-warning text-dark': b.bookingStatus === 'PENDING',
+              'bg-danger': b.bookingStatus === 'CANCELLED'
+            }">
+
+            {{ b.bookingStatus }}
+
           </span>
+
+        </div>
+
+        <hr>
+
+        <!-- Bus Type -->
+        <p class="mb-2">
+          <strong>Bus Type:</strong>
+          {{ b.schedule?.bus?.busType }}
+        </p>
+
+        <!-- Route -->
+        <p class="mb-2">
+          <strong>Route:</strong>
+          {{ b.schedule?.route?.source }}
+          →
+          {{ b.schedule?.route?.destination }}
+        </p>
+
+        <!-- Journey Date -->
+        <p class="mb-2">
+          <strong>Date:</strong>
+          {{ b.schedule?.scheduleDate }}
+        </p>
+
+        <!-- Departure -->
+        <p class="mb-2">
+          <strong>Departure:</strong>
+          {{ b.schedule?.departureTime }}
+        </p>
+
+        <!-- Seats -->
+        <p class="mb-2">
+          <strong>Seats:</strong>
+
+          <span
+            *ngFor="let p of b.passengers; let last = last">
+
+            {{ p.seatNo }}<span *ngIf="!last">, </span>
+
+          </span>
+
+        </p>
+
+        <!-- Passenger Names -->
+        <p class="mb-2">
+          <strong>Passengers:</strong>
+
+          <span
+            *ngFor="let p of b.passengers; let last = last">
+
+            {{ p.name }}<span *ngIf="!last">, </span>
+
+          </span>
+
+        </p>
+
+        <!-- Total Passengers -->
+        <p class="mb-2">
+          <strong>Total Passengers:</strong>
+          {{ b.passengers?.length }}
+        </p>
+
+        <!-- Booking Date -->
+        <p class="mb-0">
+          <strong>Booked On:</strong>
+          {{ b.bookingDate | date:'medium' }}
         </p>
 
       </div>
 
     </div>
+
   </div>
+
 </div>

@@ -1,72 +1,119 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-danger px-4 py-2 shadow-sm">
 
-  <!-- Logo (LEFT) -->
-  <a class="navbar-brand fw-bold fs-4 d-flex align-items-center gap-2" routerLink="/">
+  <!-- Logo -->
+  <a
+    class="navbar-brand fw-bold fs-4 d-flex align-items-center gap-2"
+    routerLink="/">
+
     🚌 BusBook
+
   </a>
 
   <!-- Toggle -->
-  <button 
-    class="navbar-toggler border-0" 
-    type="button" 
-    data-bs-toggle="collapse" 
-    data-bs-target="#navbarNav"
-  >
+  <button
+    class="navbar-toggler border-0"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarNav">
+
     <span class="navbar-toggler-icon"></span>
+
   </button>
 
-  <!-- Content -->
+  <!-- Navbar -->
   <div class="collapse navbar-collapse" id="navbarNav">
 
-    <!-- CENTER LINKS -->
+    <!-- Center Links -->
     <ul class="navbar-nav mx-auto gap-lg-3 text-center">
 
+      <!-- Home -->
       <li class="nav-item">
-        <a class="nav-link fw-semibold px-3 active" routerLink="/">Home</a>
+
+        <a
+          routerLink="/"
+          [routerLinkActiveOptions]="{ exact: true }"
+          routerLinkActive="bg-light text-danger rounded-pill fw-bold"
+          class="nav-link px-3">
+
+          Home
+
+        </a>
+
       </li>
 
+      <!-- Routes -->
       <li class="nav-item">
-        <a class="nav-link fw-semibold px-3" routerLink="/routes">Routes</a>
+
+        <a
+          routerLink="/routes"
+          routerLinkActive="bg-light text-danger rounded-pill fw-bold"
+          class="nav-link px-3">
+
+          Routes
+
+        </a>
+
       </li>
 
-      <!-- ✅ Only after login -->
-      <li class="nav-item" *ngIf="authService.isLoggedIn()">
-        <a class="nav-link fw-semibold px-3" routerLink="/bookings">MyBookings</a>
-      </li>
-      <li class="nav-item" >
-        <a class="nav-link fw-semibold px-3" routerLink="">Helps</a>
+      <!-- My Bookings -->
+      <li
+        class="nav-item"
+        *ngIf="authService.isLoggedIn()">
+
+        <a
+          routerLink="/bookings"
+          routerLinkActive="bg-light text-danger rounded-pill fw-bold"
+          class="nav-link px-3">
+
+          MyBookings
+
+        </a>
+
       </li>
 
     </ul>
 
-    <!-- RIGHT SIDE -->
-    <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0">
+    <!-- Right Side -->
+    <div class="d-flex gap-2 mt-3 mt-lg-0">
 
-      <!-- Help -->
-      
-
-      <!-- ❌ NOT LOGGED IN -->
+      <!-- Not Logged In -->
       <ng-container *ngIf="!authService.isLoggedIn()">
 
-        <button class="btn btn-outline-light rounded-pill px-3" routerLink="/login">
+        <button
+          routerLink="/login"
+          class="btn btn-outline-light rounded-pill px-3">
+
           Login
+
         </button>
 
-        <button class="btn btn-light text-danger fw-semibold rounded-pill px-3" routerLink="/signup">
+        <button
+          routerLink="/signup"
+          class="btn btn-light text-danger fw-semibold rounded-pill px-3">
+
           Sign Up
+
         </button>
 
       </ng-container>
 
-      <!-- ✅ LOGGED IN -->
+      <!-- Logged In -->
       <ng-container *ngIf="authService.isLoggedIn()">
 
-        <button class="btn btn-light text-danger fw-semibold rounded-pill px-3" routerLink="/profile">
+        <button
+          routerLink="/profile"
+          class="btn btn-light text-danger fw-semibold rounded-pill px-3">
+
           My Profile
+
         </button>
 
-        <button class="btn btn-outline-light rounded-pill px-3" (click)="logout()">
+        <button
+          (click)="logout()"
+          class="btn btn-outline-light rounded-pill px-3">
+
           Logout
+
         </button>
 
       </ng-container>
