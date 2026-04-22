@@ -1,100 +1,79 @@
 <div class="container-fluid p-0">
 
-  <!-- HERO: 100vh with centered text + search bleed -->
+  <!-- HERO -->
   <div class="hero-section">
 
-    <!-- Centered headline -->
     <div class="hero-content">
       <h1 class="fw-bold display-4">
         India's Best Online <br> Bus Booking Platform
       </h1>
+
       <p class="mt-3 fs-5 opacity-75">
         Book tickets instantly with best prices 🚀
       </p>
     </div>
 
-    <!-- Search bar — bleeds below hero -->
+    <!-- Search -->
     <div class="search-overlay">
       <div class="search-card">
-        <div class="row g-2 align-items-center">
 
-          <div class="col-md-3">
-            <input type="text" class="form-control form-control-lg" placeholder="From" [(ngModel)]="from">
+        <form #searchForm="ngForm">
+
+          <div class="row g-2 align-items-center">
+
+            <!-- From -->
+            <div class="col-md-3">
+              <input type="text" class="form-control form-control-lg" placeholder="From" name="from" [(ngModel)]="from"
+                required #fromRef="ngModel">
+
+              <small class="text-danger" *ngIf="fromRef.invalid && fromRef.touched">
+                From city is required
+              </small>
+            </div>
+
+            <!-- Swap -->
+            <div class="col-md-1 text-center">
+              <button type="button" class="btn btn-light rounded-circle fw-bold fs-5" (click)="swapCities()">
+                ⇄
+              </button>
+            </div>
+
+            <!-- To -->
+            <div class="col-md-3">
+              <input type="text" class="form-control form-control-lg" placeholder="To" name="to" [(ngModel)]="to"
+                required #toRef="ngModel">
+
+              <small class="text-danger" *ngIf="toRef.invalid && toRef.touched">
+                To city is required
+              </small>
+            </div>
+
+            <!-- Date -->
+            <div class="col-md-3">
+              <input type="date" class="form-control form-control-lg" name="date" [(ngModel)]="date" required
+                [min]="todayDate" #dateRef="ngModel">
+
+              <small class="text-danger" *ngIf="dateRef.touched && !date">
+                Date is required
+              </small>
+
+              <small class="text-danger" *ngIf="dateRef.touched && date && date < todayDate">
+                Previous date is not allowed
+              </small>
+            </div>
+
+            <!-- Button -->
+            <div class="col-md-2 d-grid">
+              <button type="button" class="btn btn-danger btn-lg fw-bold" (click)="search()"
+                [disabled]="searchForm.invalid || date < todayDate">
+                Search
+              </button>
+            </div>
           </div>
-
-          <div class="col-md-1 text-center">
-            <button class="btn btn-light rounded-circle fw-bold fs-5" (click)="swapCities()">⇄</button>
-          </div>
-
-          <div class="col-md-3">
-            <input type="text" class="form-control form-control-lg" placeholder="To" [(ngModel)]="to">
-          </div>
-
-          <div class="col-md-3">
-            <input type="date" class="form-control form-control-lg" [(ngModel)]="date">
-          </div>
-
-          <div class="col-md-2 d-grid">
-            <button class="btn btn-danger btn-lg fw-bold" (click)="search()">
-              Search
-            </button>
-          </div>
-
-        </div>
+        </form>
       </div>
     </div>
 
   </div>
- <div class="below-hero">
 
-  <div class="container my-5">
-
-    <!-- HEADING -->
-    <div class="text-center mb-5">
-      <h2 class="fw-bold section-title">Why Choose BusBook?</h2>
-      <p class="text-muted section-subtitle">
-        Fast, secure and reliable bus booking experience
-      </p>
-    </div>
-
-    <!-- CARDS -->
-    <div class="row g-4">
-
-      <div class="col-lg-3 col-md-6">
-        <div class="feature-card text-center">
-          <div class="icon">⚡</div>
-          <h5 class="fw-semibold mt-3">Fast Booking</h5>
-          <p class="text-muted small">Book tickets in seconds with smooth experience</p>
-        </div>
-      </div>
-
-      <div class="col-lg-3 col-md-6">
-        <div class="feature-card text-center">
-          <div class="icon">💸</div>
-          <h5 class="fw-semibold mt-3">Best Prices</h5>
-          <p class="text-muted small">Get affordable fares and exclusive deals</p>
-        </div>
-      </div>
-
-      <div class="col-lg-3 col-md-6">
-        <div class="feature-card text-center">
-          <div class="icon">🔄</div>
-          <h5 class="fw-semibold mt-3">Easy Cancellation</h5>
-          <p class="text-muted small">Hassle-free cancellations & refunds</p>
-        </div>
-      </div>
-
-      <div class="col-lg-3 col-md-6">
-        <div class="feature-card text-center">
-          <div class="icon">📞</div>
-          <h5 class="fw-semibold mt-3">24/7 Support</h5>
-          <p class="text-muted small">We’re always here to help you anytime</p>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
 </div>

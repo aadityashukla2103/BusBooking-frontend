@@ -18,9 +18,7 @@ export class BookingService {
   ) {}
 
   private getHeaders(): HttpHeaders {
-
     const token = localStorage.getItem('token');
-
     return new HttpHeaders({
       Authorization: `Bearer ${token}`
     });
@@ -29,11 +27,8 @@ export class BookingService {
   private handleError(error: HttpErrorResponse) {
 
     if (error.status === 401 || error.status === 403) {
-
       localStorage.removeItem('token');
-
       alert('Session expired. Please login again.');
-
       this.router.navigate(['/login']);
     }
 

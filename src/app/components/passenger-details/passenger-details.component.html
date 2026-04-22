@@ -56,23 +56,53 @@
 
     <div class="row g-3">
 
+      <!-- Name -->
       <div class="col-md-5">
+
         <input
           type="text"
           class="form-control"
           placeholder="Full Name"
           [(ngModel)]="p.name">
+
+        <!-- Error -->
+        <small class="text-danger"
+          *ngIf="submitted && (!p.name || p.name.trim() === '')">
+          Name is required
+        </small>
+
+      <small class="text-danger"
+  *ngIf="submitted && p.name && !isValidName(p.name)">
+  Name should contain only alphabets
+</small>
+
       </div>
 
+      <!-- Age -->
       <div class="col-md-3">
+
         <input
           type="number"
           class="form-control"
           placeholder="Age"
           [(ngModel)]="p.age">
+
+        <!-- Error -->
+        <small class="text-danger"
+          *ngIf="submitted && (!p.age || p.age <= 0)">
+          Age is required
+        </small>
+
+    <small class="text-danger"
+  *ngIf="submitted && p.age && !isValidAge(p.age)">
+  Age must be integer
+</small>
+
       </div>
 
+      <!-- Gender -->
       <div class="col-md-4">
+
         <select
           class="form-select"
           [(ngModel)]="p.gender">
@@ -83,6 +113,13 @@
           <option>Other</option>
 
         </select>
+
+        <!-- Error -->
+        <small class="text-danger"
+          *ngIf="submitted && !p.gender">
+          Gender is required
+        </small>
+
       </div>
 
     </div>
